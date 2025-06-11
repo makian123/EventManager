@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:17.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: md5
+    env_file:
+      - .env
