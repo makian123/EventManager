@@ -1,4 +1,4 @@
-package com.mhohos.TaskManager.config;
+package com.mhohos.EventManager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

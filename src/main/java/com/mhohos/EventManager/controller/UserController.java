@@ -1,7 +1,7 @@
-package com.mhohos.TaskManager.controller;
+package com.mhohos.EventManager.controller;
 
-import com.mhohos.TaskManager.model.User;
-import com.mhohos.TaskManager.repository.UserRepository;
+import com.mhohos.EventManager.model.User;
+import com.mhohos.EventManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

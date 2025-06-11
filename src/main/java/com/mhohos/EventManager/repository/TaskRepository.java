@@ -1,6 +1,6 @@
-package com.mhohos.TaskManager.repository;
+package com.mhohos.EventManager.repository;
 
-import com.mhohos.TaskManager.model.Task;
+import com.mhohos.EventManager.model.Task;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

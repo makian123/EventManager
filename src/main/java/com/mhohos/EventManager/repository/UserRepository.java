@@ -1,9 +1,7 @@
-package com.mhohos.TaskManager.repository;
+package com.mhohos.EventManager.repository;
 
-import com.mhohos.TaskManager.model.Task;
-import com.mhohos.TaskManager.model.User;
+import com.mhohos.EventManager.model.User;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.lang.NonNullApi;
 
 import java.util.List;
 import java.util.Optional;

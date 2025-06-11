@@ -1,4 +1,4 @@
-package com.mhohos.TaskManager.model;
+package com.mhohos.EventManager.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;

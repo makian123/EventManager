@@ -1,4 +1,4 @@
-package com.mhohos.TaskManager.controller;
+package com.mhohos.EventManager.controller;
 
 import org.springframework.web.bind.annotation.*;
 
