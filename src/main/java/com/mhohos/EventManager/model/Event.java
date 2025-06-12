@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
 
-    public Task(){}
-    public Task(String taskName){
+    public Event(){}
+    public Event(String taskName){
         this.name = taskName;
     }
 
