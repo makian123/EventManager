@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: TaskManager
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:/db/postgres/schema.sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+db:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://postgres:5432/taskmgr
+
+jwt:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
+  ttl: 15
