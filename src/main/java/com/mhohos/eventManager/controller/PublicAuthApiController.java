@@ -6,7 +6,6 @@ import com.mhohos.eventManager.repository.UserRepository;
 import com.mhohos.eventManager.service.JwtService;
 import com.mhohos.eventManager.service.UserRegistrationService;
 import jakarta.validation.ValidationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +17,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value="/api/public")
-public class PublicApiController {
+public class PublicAuthApiController {
     private final UserRegistrationService userRegistrationService;
     private final UserRegistrationMapper userRegistrationMapper;
 
     private final UserRepository repo;
     private final JwtService jwtService;
 
-    public PublicApiController(UserRegistrationService userRegistrationService, UserRegistrationMapper userRegistrationMapper, UserRepository repo, JwtService jwtService) {
+    public PublicAuthApiController(UserRegistrationService userRegistrationService, UserRegistrationMapper userRegistrationMapper, UserRepository repo, JwtService jwtService) {
         this.userRegistrationService = userRegistrationService;
         this.userRegistrationMapper = userRegistrationMapper;
         this.repo = repo;

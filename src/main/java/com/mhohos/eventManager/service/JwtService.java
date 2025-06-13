@@ -15,7 +15,7 @@ public class JwtService {
     private final JwtProperties jwtProperties;
     private final JwtEncoder jwtEncoder;
 
-    public JwtService(JwtProperties jwtProperties, JwtEncoder jwtEncoder, JwtDecoder jwtDecoder) {
+    public JwtService(JwtProperties jwtProperties, JwtEncoder jwtEncoder) {
         this.jwtProperties = jwtProperties;
         this.jwtEncoder = jwtEncoder;
     }

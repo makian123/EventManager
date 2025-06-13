@@ -3,6 +3,8 @@ package com.mhohos.eventManager.model;
 import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -12,12 +14,28 @@ public class User {
     private String username;
     private String password;
     private boolean admin;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "attendance",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "eventId")
+    )
+    private Set<Event> eventsAttending;
 
     public User(){}
     public User(String name, String password, boolean admin){
         this.username = name;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.admin = admin;
+    }
+
+    public void addAttendance(Event event){
+        eventsAttending.add(event);
+        event.getUsersAttending().add(this);
+    }
+    public void removeAttendance(Event event){
+        eventsAttending.remove(event);
+        event.getUsersAttending().remove(this);
     }
 
     public Long getId() {
@@ -50,5 +68,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public Set<Event> getEventsAttending() {
+        return eventsAttending;
+    }
+
+    public void setEventsAttending(Set<Event> eventsAttending) {
+        this.eventsAttending = eventsAttending;
     }
 }
