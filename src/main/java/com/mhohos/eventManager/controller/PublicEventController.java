@@ -9,11 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 @RestController
 @RequestMapping(value="/api/public")
