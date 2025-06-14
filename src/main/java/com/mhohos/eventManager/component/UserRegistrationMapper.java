@@ -1,5 +1,7 @@
-package com.mhohos.eventManager.dto;
+package com.mhohos.eventManager.component;
 
+import com.mhohos.eventManager.dto.RegistrationRequestDto;
+import com.mhohos.eventManager.dto.RegistrationResponseDto;
 import com.mhohos.eventManager.model.User;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,6 @@ public class UserRegistrationMapper {
     public RegistrationResponseDto toRegistrationResponseDto(
             final User user) {
 
-        return new RegistrationResponseDto(user.getUsername());
+        return new RegistrationResponseDto(user.getUsername(), user.isAdmin());
     }
 }

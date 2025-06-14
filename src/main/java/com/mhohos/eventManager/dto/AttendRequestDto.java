@@ -1,3 +1,5 @@
 package com.mhohos.eventManager.dto;
 
-public record AttendRequestDto(String username, Long eventId){}
+import java.util.UUID;
+
+public record AttendRequestDto(String username, UUID eventId){}

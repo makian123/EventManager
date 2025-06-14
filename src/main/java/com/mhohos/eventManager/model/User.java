@@ -1,20 +1,28 @@
 package com.mhohos.eventManager.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "uuid")
+    private UUID id;
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
     private boolean admin;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner")
+    private Set<Event> ownedEvents;
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "attendance",
             joinColumns = @JoinColumn(name = "userId"),
@@ -38,11 +46,16 @@ public class User {
         event.getUsersAttending().remove(this);
     }
 
-    public Long getId() {
+    public void addOwnedEvent(Event event){
+        ownedEvents.add(event);
+        event.setOwner(this);
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -76,5 +89,13 @@ public class User {
 
     public void setEventsAttending(Set<Event> eventsAttending) {
         this.eventsAttending = eventsAttending;
+    }
+
+    public Set<Event> getOwnedEvents() {
+        return ownedEvents;
+    }
+
+    public void setOwnedEvents(Set<Event> ownedEvents) {
+        this.ownedEvents = ownedEvents;
     }
 }

@@ -1,6 +1,8 @@
 package com.mhohos.eventManager.utility;
 
 import com.mhohos.eventManager.config.JwtProperties;
+import com.mhohos.eventManager.model.User;
+import com.mhohos.eventManager.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -8,13 +10,16 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public final class JwtUtil {
     private final JwtProperties jwtProperties;
+    private final UserRepository userRepository;
 
-    public JwtUtil(JwtProperties jwtProperties) {
+    public JwtUtil(JwtProperties jwtProperties, UserRepository userRepository) {
         this.jwtProperties = jwtProperties;
+        this.userRepository = userRepository;
     }
 
     private Optional<Claims> getClaims(String token){
@@ -39,6 +44,14 @@ public final class JwtUtil {
         final Optional<Claims> claims = getClaims(token);
         return claims.map(value -> value.get(claim, claimType));
 
+    }
+
+    public Optional<User> extractUser(String token){
+        String uuid = extractClaim("userId", token, String.class).orElse(null);
+        if(uuid == null){
+            return Optional.empty();
+        }
+        return userRepository.findById(UUID.fromString(uuid));
     }
 
     public boolean isExpired(String token){

@@ -44,10 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(jwtUtil.isValid(jwtTok)){
             Jwt jwt = NimbusJwtDecoder.withPublicKey(jwtProperties.publicKey()).build().decode(jwtTok);;
             SecurityContextHolder.getContext().setAuthentication(new JwtAuthenticationToken(jwt));
-
-            filterChain.doFilter(request, response);
-            return;
         }
-        throw new ValidationException("Bad token");
+        filterChain.doFilter(request, response);
     }
 }

@@ -1,5 +1,6 @@
 package com.mhohos.eventManager.controller;
 
+import com.mhohos.eventManager.component.UserRegistrationMapper;
 import com.mhohos.eventManager.dto.*;
 import com.mhohos.eventManager.model.User;
 import com.mhohos.eventManager.repository.UserRepository;

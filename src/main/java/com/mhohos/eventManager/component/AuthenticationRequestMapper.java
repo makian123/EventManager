@@ -1,5 +1,7 @@
-package com.mhohos.eventManager.dto;
+package com.mhohos.eventManager.component;
 
+import com.mhohos.eventManager.dto.AuthenticationRequestDto;
+import com.mhohos.eventManager.dto.AuthenticationResponseDto;
 import com.mhohos.eventManager.model.User;
 import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Component;

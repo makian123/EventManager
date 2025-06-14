@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface EventRepository extends CrudRepository<Event, Long> {
+public interface EventRepository extends CrudRepository<Event, UUID> {
     List<Event> findAll();
-    Optional<Event> findById(Long id);
+    Optional<Event> findById(UUID id);
 }
