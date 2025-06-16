@@ -3,6 +3,7 @@ package com.mhohos.eventManager.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +27,7 @@ public class Event {
         this.owner = owner;
         this.name = taskName;
         this.startDate = startDate;
+        this.usersAttending = new HashSet<>();
     }
 
     public UUID getId() {

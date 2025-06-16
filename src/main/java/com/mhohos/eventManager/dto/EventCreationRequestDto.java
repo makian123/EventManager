@@ -1,6 +1,6 @@
 package com.mhohos.eventManager.dto;
 
-import java.util.Date;
+import java.time.Instant;
 
-public record EventCreationRequestDto(String name, Date startDate) {
+public record EventCreationRequestDto(String name, Instant startDate) {
 }

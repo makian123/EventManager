@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -48,13 +49,14 @@ public class EventController {
     @Transactional
     @PutMapping
     public ResponseEntity<UUID> createEvent(@RequestHeader (name="Authorization") String jwtToken, @RequestBody EventCreationRequestDto eventCreationRequest){
-        if(eventCreationRequest.startDate().toInstant().isBefore(Instant.now())){
+        if(eventCreationRequest.startDate().isBefore(Instant.now())){
             throw new ValidationException("Event not in future");
         }
         User requestUser = jwtUtil.extractUser(BearerTokenUtil.extractTokenFromHeader(jwtToken)).orElseThrow(ValidationException::new);
-        Event createdEvent = new Event(requestUser, eventCreationRequest.name(), eventCreationRequest.startDate());
+        Event createdEvent = new Event(requestUser, eventCreationRequest.name(), Date.from(eventCreationRequest.startDate()));
 
         eventRepository.save(createdEvent);
+        requestUser.addAttendance(createdEvent);;
 
         return ResponseEntity.ok(createdEvent.getId());
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -35,6 +36,7 @@ public class User {
         this.username = name;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.admin = admin;
+        this.eventsAttending = new HashSet<>();
     }
 
     public void addAttendance(Event event){
